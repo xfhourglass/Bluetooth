@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mybluetooth.OperationActivity">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UP"
+                android:id="@+id/button_up"
+                android:layout_above="@+id/button_down"
+                android:layout_alignStart="@+id/button_down"
+                android:layout_marginBottom="24dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="down"
+                android:id="@+id/button_down"
+                android:layout_marginBottom="34dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="connect"
+                android:id="@+id/button_connect"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/button_up"
+                android:layout_marginTop="41dp" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="before"
+            android:id="@+id/button_before"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="left"
+            android:id="@+id/button_left"
+            android:layout_below="@+id/button_before"
+            android:layout_toStartOf="@+id/button_before" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="right"
+            android:id="@+id/button_right"
+            android:layout_below="@+id/button_before"
+            android:layout_toEndOf="@+id/button_before" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="later"
+            android:id="@+id/button_later"
+            android:layout_below="@+id/button_right"
+            android:layout_toStartOf="@+id/button_right" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rerurn"
+            android:id="@+id/button_return"
+            android:layout_alignEnd="@+id/button_right" />
+
+        <FrameLayout
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView_state_message"
+                android:layout_gravity="left|top" />
+        </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>
