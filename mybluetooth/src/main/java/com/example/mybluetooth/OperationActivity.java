@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class OperationActivity extends AppCompatActivity implements View.OnClickListener {
+public class OperationActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 
     private android.widget.Button buttonup;
     private android.widget.Button buttondown;
@@ -48,12 +50,12 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         this.buttonup = (Button) findViewById(R.id.button_up);
         buttonconnect.setOnClickListener(this);
         buttonreturn.setOnClickListener(this);
-        buttonbefore.setOnClickListener(this);
-        buttonlater.setOnClickListener(this);
-        buttonleft.setOnClickListener(this);
-        buttonright.setOnClickListener(this);
-        buttonup.setOnClickListener(this);
-        buttondown.setOnClickListener(this);
+        buttonbefore.setOnTouchListener(this);
+        buttonlater.setOnTouchListener(this);
+        buttonleft.setOnTouchListener(this);
+        buttonright.setOnTouchListener(this);
+        buttonup.setOnTouchListener(this);
+        buttondown.setOnTouchListener(this);
         Bundle bundle = getIntent().getExtras();
         String name = bundle.getString("name");
         String address = bundle.getString("address");
@@ -64,45 +66,6 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
                 handler.sendMessage(message);
             }
         });
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        String msg = null;
-        switch (view.getId()) {
-            case R.id.button_connect:
-                setConnect();
-                break;
-            case R.id.button_before:
-                msg = "before";
-                break;
-            case R.id.button_later:
-                msg = "later";
-                break;
-            case R.id.button_left:
-                msg = "left";
-                break;
-            case R.id.button_right:
-                msg = "right";
-                break;
-            case R.id.button_up:
-                msg = "up";
-                break;
-            case R.id.button_down:
-                msg = "down";
-                break;
-            case R.id.button_return:
-                clientBlue.shutdownClient();
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
-        }
-        if (msg != null && !msg.equals("")) {
-            clientBlue.sendMessage(msg);
-        }
     }
 
     private void setConnect() {
@@ -123,4 +86,68 @@ public class OperationActivity extends AppCompatActivity implements View.OnClick
         }
     };
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        Log.i("触摸", event.getAction() + "");
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                sendMessage(v);
+                break;
+            case MotionEvent.ACTION_UP:
+                clientBlue.sendMessage("u");
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_connect:
+                setConnect();
+                break;
+            case R.id.button_return:
+                clientBlue.shutdownClient();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        sendMessage(v);
+    }
+
+
+    private void sendMessage(final View v) {
+        String msg = null;
+        switch (v.getId()) {
+            case R.id.button_before:
+                msg = "w";
+                break;
+            case R.id.button_later:
+                msg = "s";
+                break;
+            case R.id.button_left:
+                msg = "a";
+                break;
+            case R.id.button_right:
+                msg = "d";
+                break;
+            case R.id.button_up:
+                msg = "u";
+                break;
+            case R.id.button_down:
+                msg = "o";
+                break;
+            default:
+                break;
+        }
+
+        if (msg != null && !msg.equals("")) {
+            clientBlue.sendMessage(msg);
+        }
+    }
 }

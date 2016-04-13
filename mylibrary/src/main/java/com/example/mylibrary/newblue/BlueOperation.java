@@ -25,7 +25,7 @@ import java.util.UUID;
  * <br/>
  * time:下午1:52
  */
-public class BlueOperation implements ClientBlue,ServiceBlue {
+public class BlueOperation implements ClientBlue, ServiceBlue {
 
     private Context context;
 
@@ -45,17 +45,17 @@ public class BlueOperation implements ClientBlue,ServiceBlue {
 
     public BlueOperation(Context context, String name, String address) {
         this.context = context;
-        if (name != null){
+        if (name != null) {
             PROTOCOL_SCHEME_RFCOMM = name;
         }
         BluetoothMsg.BlueToothAddress = address;
     }
 
-    public interface onMessageListener{
+    public interface onMessageListener {
         void readMessage(Message String);
     }
 
-    public void setOnMessageListener(onMessageListener listener){
+    public void setOnMessageListener(onMessageListener listener) {
         this.listener = listener;
     }
 
@@ -102,6 +102,7 @@ public class BlueOperation implements ClientBlue,ServiceBlue {
 
     @Override
     public void sendMessage(String message) {
+        Log.i("蓝牙_发送信息", message);
         if (socket == null) {
             Toast.makeText(context, "没有连接", Toast.LENGTH_SHORT).show();
             return;
