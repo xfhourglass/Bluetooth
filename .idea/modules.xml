@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Bluetooth.iml" filepath="$PROJECT_DIR$/Bluetooth.iml" />
       <module fileurl="file://$PROJECT_DIR$/Bluetooth_for_github.iml" filepath="$PROJECT_DIR$/Bluetooth_for_github.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybluetooth/mybluetooth.iml" filepath="$PROJECT_DIR$/mybluetooth/mybluetooth.iml" />
